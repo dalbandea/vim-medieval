@@ -171,9 +171,9 @@ function! s:callback(context, output) abort
             let [tstart, tend] = s:findblock(opts.target)
 	    " If not found, create it
             if !tstart
-		call append(end + 1, '<!-- name: ' . opts.target . ' -->')
-		call append(end + 2, '```')
-		call append(end + 3, '```')
+	        call append(end + 1, '<!-- name: ' . opts.target . ' -->')
+	        call append(end + 2, '```')
+	        call append(end + 3, '```')
             endif
 
 	    let [tstart, tend] = s:findblock(opts.target)
