@@ -167,7 +167,17 @@ function! s:callback(context, output) abort
         elseif opts.target =~# '^@'
             call setreg(opts.target[1], a:output)
         else
+	    " Try to find target block
             let [tstart, tend] = s:findblock(opts.target)
+	    " If not found, create it
+            if !tstart
+		call append(end + 1, '<!-- name: ' . opts.target . ' -->')
+		call append(end + 2, '```')
+		call append(end + 3, '```')
+            endif
+
+	    let [tstart, tend] = s:findblock(opts.target)
+
             if !tstart
                 return s:error('Couldn''t find block "' . opts.target . '"')
             endif
